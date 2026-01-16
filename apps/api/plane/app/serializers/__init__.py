@@ -129,3 +129,7 @@ from .draft import (
     DraftIssueSerializer,
     DraftIssueDetailSerializer,
 )
+from .planning import (
+    PlanningIssueSerializer,
+    PlanningTimelineSerializer,
+)
