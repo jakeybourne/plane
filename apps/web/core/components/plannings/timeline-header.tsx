@@ -13,10 +13,12 @@ export const TimelineHeader: React.FC<TimelineHeaderProps> = ({ startDate, endDa
   }, [startDate, endDate]);
 
   return (
-    <div className="sticky top-0 z-10 bg-white dark:bg-zinc-900 border-b dark:border-zinc-800">
+    <div className="sticky top-0 z-10 bg-layer-0 border-b border-border-primary">
       <div className="flex">
         {/* Left column spacer (for staff/project names) */}
-        <div className="w-64 flex-shrink-0 border-r dark:border-zinc-800 p-4 font-semibold">Resource</div>
+        <div className="w-64 flex-shrink-0 border-r border-border-primary px-4 py-3 font-medium text-primary">
+          Resource
+        </div>
 
         {/* Date columns */}
         <div className="flex flex-1 overflow-x-auto">
@@ -26,12 +28,12 @@ export const TimelineHeader: React.FC<TimelineHeaderProps> = ({ startDate, endDa
               <div
                 key={day.toISOString()}
                 className={cn(
-                  "flex-shrink-0 w-24 border-r dark:border-zinc-800 p-2 text-center",
-                  isWeekendDay && "bg-gray-50 dark:bg-zinc-800/50"
+                  "flex-shrink-0 w-24 border-r border-border-primary p-2 text-center",
+                  isWeekendDay && "bg-layer-2"
                 )}
               >
-                <div className="text-xs font-semibold text-gray-900 dark:text-gray-100">{format(day, "EEE")}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">{format(day, "MMM d")}</div>
+                <div className="text-11 font-medium text-primary">{format(day, "EEE")}</div>
+                <div className="text-13 text-placeholder">{format(day, "MMM d")}</div>
               </div>
             );
           })}

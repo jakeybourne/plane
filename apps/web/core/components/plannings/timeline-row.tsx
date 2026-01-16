@@ -31,21 +31,21 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
     const staffData = data as IStaffData;
 
     return (
-      <div className="border-b dark:border-zinc-800">
+      <div className="border-b border-border-primary">
         {/* Staff header row */}
-        <div className="flex hover:bg-gray-50 dark:hover:bg-zinc-800/50">
+        <div className="flex hover:bg-layer-transparent-hover">
           {/* Staff name column */}
-          <div className="w-64 flex-shrink-0 border-r dark:border-zinc-800 p-4">
+          <div className="w-64 flex-shrink-0 border-r border-border-primary px-4 py-3">
             <button onClick={() => setIsExpanded(!isExpanded)} className="flex items-center gap-2 w-full text-left">
               {isExpanded ? (
-                <ChevronDown className="h-4 w-4 flex-shrink-0" />
+                <ChevronDown className="size-4 flex-shrink-0 text-placeholder" />
               ) : (
-                <ChevronRight className="h-4 w-4 flex-shrink-0" />
+                <ChevronRight className="size-4 flex-shrink-0 text-placeholder" />
               )}
               <Avatar name={staffData.user.display_name} src={staffData.user.avatar} size="sm" showTooltip={false} />
               <div className="flex-1 min-w-0">
-                <div className="font-medium text-sm truncate">{staffData.user.display_name}</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="font-medium text-13 text-primary truncate">{staffData.user.display_name}</div>
+                <div className="text-11 text-placeholder">
                   {staffData.total_issues} {staffData.total_issues === 1 ? "task" : "tasks"}
                 </div>
               </div>
@@ -57,10 +57,7 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
             {days.map((day) => (
               <div
                 key={day.toISOString()}
-                className={cn(
-                  "flex-shrink-0 w-24 h-12 border-r dark:border-zinc-800",
-                  isWeekend(day) && "bg-gray-50 dark:bg-zinc-800/50"
-                )}
+                className={cn("flex-shrink-0 w-24 h-12 border-r border-border-primary", isWeekend(day) && "bg-layer-2")}
               />
             ))}
           </div>
@@ -69,14 +66,12 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
         {/* Project rows */}
         {isExpanded &&
           staffData.projects.map((projectData, idx) => (
-            <div key={idx} className="flex hover:bg-gray-50 dark:hover:bg-zinc-800/30">
+            <div key={idx} className="flex hover:bg-layer-transparent-hover">
               {/* Project name column */}
-              <div className="w-64 flex-shrink-0 border-r dark:border-zinc-800 p-4 pl-12">
+              <div className="w-64 flex-shrink-0 border-r border-border-primary px-4 py-3 pl-12">
                 <div className="flex items-center gap-2">
-                  <div className="text-xs font-mono text-gray-500 dark:text-gray-400">
-                    {projectData.project?.identifier}
-                  </div>
-                  <div className="text-sm truncate">{projectData.project?.name}</div>
+                  <div className="text-11 font-mono text-placeholder">{projectData.project?.identifier}</div>
+                  <div className="text-13 text-primary truncate">{projectData.project?.name}</div>
                 </div>
               </div>
 
@@ -86,10 +81,7 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
                 {days.map((day) => (
                   <div
                     key={day.toISOString()}
-                    className={cn(
-                      "flex-shrink-0 w-24 border-r dark:border-zinc-800",
-                      isWeekend(day) && "bg-gray-50 dark:bg-zinc-800/50"
-                    )}
+                    className={cn("flex-shrink-0 w-24 border-r border-border-primary", isWeekend(day) && "bg-layer-2")}
                   />
                 ))}
 
@@ -118,20 +110,20 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
     const projectData = data as IProjectStaffData;
 
     return (
-      <div className="border-b dark:border-zinc-800">
+      <div className="border-b border-border-primary">
         {/* Project header row */}
-        <div className="flex hover:bg-gray-50 dark:hover:bg-zinc-800/50">
+        <div className="flex hover:bg-layer-transparent-hover">
           {/* Project name column */}
-          <div className="w-64 flex-shrink-0 border-r dark:border-zinc-800 p-4">
+          <div className="w-64 flex-shrink-0 border-r border-border-primary px-4 py-3">
             <button onClick={() => setIsExpanded(!isExpanded)} className="flex items-center gap-2 w-full text-left">
               {isExpanded ? (
-                <ChevronDown className="h-4 w-4 flex-shrink-0" />
+                <ChevronDown className="size-4 flex-shrink-0 text-placeholder" />
               ) : (
-                <ChevronRight className="h-4 w-4 flex-shrink-0" />
+                <ChevronRight className="size-4 flex-shrink-0 text-placeholder" />
               )}
               <div className="flex-1 min-w-0">
-                <div className="font-medium text-sm truncate">{projectData.project?.name}</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">
+                <div className="font-medium text-13 text-primary truncate">{projectData.project?.name}</div>
+                <div className="text-11 text-placeholder">
                   {projectData.total_issues} {projectData.total_issues === 1 ? "task" : "tasks"}
                 </div>
               </div>
@@ -143,10 +135,7 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
             {days.map((day) => (
               <div
                 key={day.toISOString()}
-                className={cn(
-                  "flex-shrink-0 w-24 h-12 border-r dark:border-zinc-800",
-                  isWeekend(day) && "bg-gray-50 dark:bg-zinc-800/50"
-                )}
+                className={cn("flex-shrink-0 w-24 h-12 border-r border-border-primary", isWeekend(day) && "bg-layer-2")}
               />
             ))}
           </div>
@@ -155,12 +144,12 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
         {/* User rows */}
         {isExpanded &&
           projectData.users.map((userData, idx) => (
-            <div key={idx} className="flex hover:bg-gray-50 dark:hover:bg-zinc-800/30">
+            <div key={idx} className="flex hover:bg-layer-transparent-hover">
               {/* User name column */}
-              <div className="w-64 flex-shrink-0 border-r dark:border-zinc-800 p-4 pl-12">
+              <div className="w-64 flex-shrink-0 border-r border-border-primary px-4 py-3 pl-12">
                 <div className="flex items-center gap-2">
                   <Avatar name={userData.user.display_name} src={userData.user.avatar} size="sm" showTooltip={false} />
-                  <div className="text-sm truncate">{userData.user.display_name}</div>
+                  <div className="text-13 text-primary truncate">{userData.user.display_name}</div>
                 </div>
               </div>
 
@@ -170,10 +159,7 @@ export const TimelineRow: React.FC<TimelineRowProps> = ({
                 {days.map((day) => (
                   <div
                     key={day.toISOString()}
-                    className={cn(
-                      "flex-shrink-0 w-24 border-r dark:border-zinc-800",
-                      isWeekend(day) && "bg-gray-50 dark:bg-zinc-800/50"
-                    )}
+                    className={cn("flex-shrink-0 w-24 border-r border-border-primary", isWeekend(day) && "bg-layer-2")}
                   />
                 ))}
 

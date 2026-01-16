@@ -11,11 +11,11 @@ interface TimelineTaskBarProps {
 }
 
 const PRIORITY_COLORS = {
-  urgent: "bg-red-500",
-  high: "bg-orange-500",
-  medium: "bg-yellow-500",
-  low: "bg-blue-500",
-  none: "bg-gray-500",
+  urgent: "bg-danger",
+  high: "bg-warning",
+  medium: "bg-info",
+  low: "bg-success",
+  none: "bg-placeholder",
 };
 
 const DAY_WIDTH = 96; // 24rem = 96px (w-24)
@@ -60,15 +60,17 @@ export const TimelineTaskBar: React.FC<TimelineTaskBarProps> = ({ issue, timelin
   };
 
   const tooltipContent = (
-    <div className="text-xs space-y-1">
-      <div className="font-semibold">{issue.name}</div>
-      <div className="text-gray-400">{issue.project?.name}</div>
-      <div className="flex items-center gap-2 text-gray-400">
+    <div className="text-11 space-y-1">
+      <div className="font-medium text-primary">{issue.name}</div>
+      <div className="text-placeholder">{issue.project?.name}</div>
+      <div className="flex items-center gap-2 text-placeholder">
         <span>{format(new Date(issue.start_date), "MMM d")}</span>
         <span>→</span>
         <span>{format(new Date(issue.target_date), "MMM d")}</span>
       </div>
-      {issue.priority && issue.priority !== "none" && <div className="capitalize">Priority: {issue.priority}</div>}
+      {issue.priority && issue.priority !== "none" && (
+        <div className="capitalize text-primary">Priority: {issue.priority}</div>
+      )}
     </div>
   );
 
@@ -79,7 +81,7 @@ export const TimelineTaskBar: React.FC<TimelineTaskBarProps> = ({ issue, timelin
         tabIndex={0}
         className={cn(
           "absolute h-8 rounded cursor-pointer transition-all",
-          "hover:ring-2 hover:ring-blue-500 hover:z-10",
+          "hover:ring-2 hover:ring-accent-primary hover:z-10",
           priorityColor
         )}
         style={{
@@ -90,7 +92,7 @@ export const TimelineTaskBar: React.FC<TimelineTaskBarProps> = ({ issue, timelin
         onClick={handleClick}
         onKeyDown={handleKeyDown}
       >
-        <div className="h-full flex items-center px-2 text-white text-xs font-medium truncate">{issue.name}</div>
+        <div className="h-full flex items-center px-2 text-white text-11 font-medium truncate">{issue.name}</div>
       </div>
     </Tooltip>
   );

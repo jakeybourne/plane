@@ -87,34 +87,34 @@ export const PlanningTimeline: React.FC<PlanningTimelineProps> = ({ viewBy }) =>
   const hasData = data?.data && Array.isArray(data.data) && data.data.length > 0;
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col bg-layer-0">
       {/* Controls bar */}
-      <div className="border-b dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4">
+      <div className="border-b border-border-primary bg-layer-0 px-6 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Date navigation */}
             <div className="flex items-center gap-2">
               <Button variant="neutral-primary" size="sm" onClick={goToPreviousMonth}>
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="size-4" />
               </Button>
               <Button variant="neutral-primary" size="sm" onClick={goToToday}>
                 Today
               </Button>
               <Button variant="neutral-primary" size="sm" onClick={goToNextMonth}>
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="size-4" />
               </Button>
             </div>
 
             {/* Current month display */}
-            <div className="flex items-center gap-2 text-lg font-semibold">
-              <CalendarIcon className="h-5 w-5 text-gray-500" />
+            <div className="flex items-center gap-2 text-base font-medium text-primary">
+              <CalendarIcon className="size-4 text-placeholder" />
               <span>{format(currentDate, "MMMM yyyy")}</span>
             </div>
           </div>
 
           {/* Stats */}
           {hasData && (
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+            <div className="text-13 text-placeholder">
               {data.data.length} {viewBy === "staff" ? "team members" : "projects"}
             </div>
           )}
@@ -122,16 +122,16 @@ export const PlanningTimeline: React.FC<PlanningTimelineProps> = ({ viewBy }) =>
       </div>
 
       {/* Timeline content */}
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 overflow-auto bg-layer-1">
         {isLoading ? (
           <div className="flex items-center justify-center h-full">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500" />
+            <div className="animate-spin rounded-full size-8 border-b-2 border-accent-primary" />
           </div>
         ) : error ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <p className="text-red-500 font-medium">Failed to load planning data</p>
-              <p className="text-sm text-gray-500 mt-1">Please try again later</p>
+              <p className="text-danger font-medium">Failed to load planning data</p>
+              <p className="text-13 text-placeholder mt-1">Please try again later</p>
             </div>
           </div>
         ) : !hasData ? (
